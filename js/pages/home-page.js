@@ -10,10 +10,10 @@ export default {
         }
     },
     mounted() {
-        console.log(this.$refs.theTitle, 'IN MOUNTED');
+        // console.log(this.$refs.theTitle, 'IN MOUNTED');
     },
     created() {
-        console.log(this.$refs.theTitle, 'IN CREATED');
+        // console.log(this.$refs.theTitle, 'IN CREATED');
     },
 
 }

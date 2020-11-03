@@ -1,11 +1,13 @@
 import { bookService } from '../service/bookService.js'
-import bookList from '../cmps/book-list.js'
-import bookFilter from '../cmps/book-filter.js'
+import bookList from '../cmps/book/book-list.js'
+import bookFilter from '../cmps/book/book-filter.js'
+import bookAdd from '../cmps/book/book-add.js'
 
 export default {
     template: `
     <section class="books-section">
     <book-filter @filtered="setFilter"></book-filter>
+    <book-add @filtered="setFilter"></book-add>
     <book-list v-if="showBookList" :books="booksToShow" @selected="selectBook"></book-list>
     </section>`
     ,
@@ -40,7 +42,8 @@ export default {
     },
     components: {
         bookList,
-        bookFilter
+        bookFilter,
+        bookAdd
     }
 }
 

@@ -7,7 +7,7 @@ export default {
         <section class="review-container">
             <form @submit.prevent="submitReview">
                 <label>
-                    <input ref="inputName" type="text" v-model="reviewName" placeholder="name..">
+                    <input ref="inputName" type="text" v-model="reviewName" placeholder="name.." required>
                 </label>
                 <h4>Rate:</h4>
                 <div class="rate-section">
@@ -21,7 +21,7 @@ export default {
                 </div>
                 <div class="readDate">
                     <h3>Read at:</h3>
-                    <input v-model="readDate" type="date">
+                    <input v-model="readDate" type="date" required>
                 </div>
                 <textarea name="reader-note" id="reader-note" v-model="reviewTxt" cols="10" rows="10" placeholder="Anything you want to add.."></textarea>
                 <button>Add</button>
@@ -62,23 +62,19 @@ export default {
                 reviewTxt: this.reviewTxt || ''
             }
             bookService.addReview(this.book.id, review)
-                .then(eventBus.$emit('show-msg-add', 'Review added successfully')) //fix
-
+                .then(eventBus.$emit(EVENT_SHOW_MSG , 'Review added successfully'))
+                this.reviewName = ''
         },
         deleteReview(reviewId) {
             bookService.removeReview(reviewId, this.book.id)
                 .then(res => {
                     console.log('res', res);
-                    eventBus.$emit(EVENT_SHOW_MSG, 'Review Deleted') //fix
+                    eventBus.$emit(EVENT_SHOW_MSG, 'Review Deleted') 
                 })
         },
         toggleShowReviews() {
             this.isShowReviews = !this.isShowReviews;
         }
-    },
-    computed: {
-
-
     },
     created() {
         const id = this.$route.params.bookId;
