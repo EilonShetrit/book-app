@@ -17,6 +17,21 @@ export default {
     methods: {
         emitFilter() {
             this.$emit('filtered', { ...this.filterBy });
+        },
+        reportVal(){
+            bookService.newbooks(this.selectedTitle)
+            .then(books=> {
+                this.newBooks=books
+                // console.log(this.newBooks)
+                return books
+            })
+            .then(books=>{
+               this.titles= books.map(book=>{
+                   return book.title
+                })
+                // console.log( this.titles)
+            })   
+            // newBookService.searchBooks(this.selectedTitle)
         }
     },
     computed: {
